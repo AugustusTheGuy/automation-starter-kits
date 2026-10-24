@@ -1,0 +1,7 @@
+{
+  "start_url": "https://example.com",
+  "fields": [{"name": "title", "selector": "title"}],
+  "max_pages": 1,
+  "engine": "httpx",
+  "dry_run": true
+}

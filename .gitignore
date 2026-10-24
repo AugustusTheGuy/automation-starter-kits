@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+!.env.example
+*.log
+*.jsonl
+out*.csv
+seen*.json
+state*.json
+KILL
+.DS_Store

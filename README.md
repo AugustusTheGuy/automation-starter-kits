@@ -12,6 +12,7 @@ Small, self-contained Python tools for common freelance automation jobs. Each fo
 | [`solana-paper-dashboard/`](solana-paper-dashboard) | Local web dashboard (`127.0.0.1:8765`) that records paper positions for new signatures on watched addresses. | Python `http.server`, httpx |
 | [`solana-watch-registry/`](solana-watch-registry) | Anchor program that stores watch targets. `alert.py --registry` reads them. `app/` is a devnet page that simulates before sign. | Anchor 0.32, Vite, TypeScript |
 | [`java-relay/`](java-relay) | Spring Boot port of the webhook relay: size limit, JSON object check, JSON-lines log, health, Actuator, KILL file. | Java 21, Maven |
+| [`solana-wallet-alerts-rs/`](solana-wallet-alerts-rs) | Rust port of the watch alerter, including `--registry`. Read-only RPC client. No key. | Rust, tokio, reqwest |
 
 None of the Solana tools hold, ask for, or sign with a private key. They read public chain data only.
 

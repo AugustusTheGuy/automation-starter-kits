@@ -10,6 +10,8 @@ Small, self-contained Python tools for common freelance automation jobs. Each fo
 | [`solana-wallet-alerts/`](solana-wallet-alerts) | Watches public Solana addresses over RPC and sends Telegram alerts for new signatures. Base58 pubkey validation, `MIN_SOL` and mint-allowlist filters, 7-day seen-signature store, `KILL` file. | httpx, python-telegram-bot |
 | [`solana-paper-watcher/`](solana-paper-watcher) | Alert agent with RPC fallback, optional paper quote from Jupiter's public quote API, coordinated-activity flag across watched wallets, structured JSON log. Refuses to start with `LIVE=1`. | httpx, asyncio |
 | [`solana-paper-dashboard/`](solana-paper-dashboard) | Local web dashboard (`127.0.0.1:8765`) that records paper positions for new signatures on watched addresses. | Python `http.server`, httpx |
+| [`solana-watch-registry/`](solana-watch-registry) | Anchor program that stores watch targets. `alert.py --registry` reads them. `app/` is a devnet page that simulates before sign. | Anchor 0.32, Vite, TypeScript |
+| [`java-relay/`](java-relay) | Spring Boot port of the webhook relay: size limit, JSON object check, JSON-lines log, health, Actuator, KILL file. | Java 21, Maven |
 
 None of the Solana tools hold, ask for, or sign with a private key. They read public chain data only.
 

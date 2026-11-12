@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Watch registry</title>
+    <style>
+      body { font: 16px/1.4 system-ui, sans-serif; margin: 2rem; max-width: 40rem; }
+      button, input { font: inherit; margin: 0.25rem; }
+      pre { background: #f4f4f4; padding: 0.75rem; white-space: pre-wrap; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Watch registry</h1>
+      <p>Cluster: devnet</p>
+      <button id="connect" type="button">Connect Phantom</button>
+      <p id="status">Not connected</p>
+      <button id="refresh" type="button">List watches</button>
+      <ul id="watches"></ul>
+      <label>Target <input id="target" /></label>
+      <label>Min lamports <input id="min" value="1000000" /></label>
+      <button id="simulate-add" type="button">Simulate add</button>
+      <button id="simulate-pause" type="button">Simulate pause</button>
+      <button id="simulate-remove" type="button">Simulate remove</button>
+      <pre id="sim">No simulation yet</pre>
+      <button id="sign" type="button" disabled>Sign last simulation</button>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

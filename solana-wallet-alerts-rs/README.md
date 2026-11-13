@@ -24,3 +24,5 @@ cargo test
 ```
 
 Result: 15 passed, 0 failed, exit 0. The first run, before the library existed, exited 101 because those functions were missing. `cargo run -- --help` exits 0.
+
+2026-11-13: `valid_pubkey` kept the base58 carry as `carry >> 8` instead of `value >> 8`, so 44-character addresses were rejected. After that one-line fix, `cargo test` again reported 15 passed, exit 0. A devnet poll with `SOLANA_RPC=https://api.devnet.solana.com`, `DRY_RUN=1`, and `WATCH_ADDRESSES` set to the deploy wallet printed `watching 1 dry=true` and five `[DRY]` lines, including signature prefix `3SeJchDq` at slot 521613090. The process was then stopped. It was not left running, and it was not pointed at mainnet.

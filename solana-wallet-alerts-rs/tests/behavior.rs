@@ -56,6 +56,8 @@ fn registry_flag_parses_without_a_keypair() {
 #[test]
 fn pubkey_rules_match_the_python_bot() {
     assert!(valid_pubkey(SYSTEM));
+    assert!(valid_pubkey("Fe2dGytY15xzbqL23RBTT9wCG85CHGtyHCuysiL93uXe"));
+    assert!(valid_pubkey("Cy8SDxDGjFoxsiYvePXq67pdfiLgfJurcqUaTPD557a3"));
     assert!(!valid_pubkey("not-a-key"));
     assert!(!valid_pubkey(&"0OIl".repeat(10)));
     let (good, bad) = partition_watches(&[SYSTEM, "nope"]);

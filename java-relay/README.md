@@ -12,7 +12,7 @@ export PATH="$JAVA_HOME/bin:$PATH"
 mvn test
 ```
 
-The image is described in `Dockerfile`. It has not been built.
+The image is described in `Dockerfile`. The local tag is `java-relay:local`. It has not been pushed to a registry.
 
 ## Verified
 
@@ -23,4 +23,6 @@ export JAVA_HOME=/opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home
 mvn -Dmaven.repo.local=/Volumes/NoxSSD/Codex/m2 test
 ```
 
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0. BUILD SUCCESS. Exit 0. The image was not built.
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0. BUILD SUCCESS. Exit 0.
+
+2026-11-13: `mvn package` exit 0. OrbStack built `java-relay:local` (`dc496c43b9ad`). `docker run -p 127.0.0.1:8080:8080` then `curl` : `GET /health` returned `{"ok":true}` HTTP 200, `GET /actuator/health` returned `{"status":"UP"}` HTTP 200, and `POST /` with `{"text":"ping"}` returned `{"ok":true,"echo":"ping"}` HTTP 200. The container was stopped and removed. The image was not pushed. There is no registry login on this Mac.

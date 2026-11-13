@@ -65,7 +65,7 @@ pub fn valid_pubkey(addr: &str) -> bool {
         for byte in acc.iter_mut().rev() {
             let value = u32::from(*byte) * 58 + carry;
             *byte = (value & 0xff) as u8;
-            carry >>= 8;
+            carry = value >> 8;
         }
         while carry > 0 {
             acc.insert(0, (carry & 0xff) as u8);

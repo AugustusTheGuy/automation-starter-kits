@@ -11,3 +11,12 @@ seen*.json
 state*.json
 KILL
 .DS_Store
+
+# Build artifacts and local wallets
+target/
+node_modules/
+.anchor/
+test-ledger/
+deploy-wallet.json
+*keypair*.json
+id.json

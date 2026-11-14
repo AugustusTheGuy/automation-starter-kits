@@ -12,7 +12,9 @@ export PATH="$JAVA_HOME/bin:$PATH"
 mvn test
 ```
 
-The image is described in `Dockerfile`. The local tag is `java-relay:local`. It has not been pushed to a registry.
+The image is described in `Dockerfile`. It is a multi-stage build: Maven packages the jar, then a Java 21 JRE image runs it. The local tag used on 2026-11-13 was `java-relay:local`.
+
+`GET /` and `GET /health` stay open. When `RELAY_TOKEN` is unset, `POST /` stays open, which is what the original tests cover. When `RELAY_TOKEN` is set, `POST /` requires `Authorization: Bearer` and a missing or wrong token returns 401. A public instance sets that variable so the internet cannot append to the log.
 
 ## Verified
 

@@ -8,6 +8,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.security.MessageDigest;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,10 +23,15 @@ public class RelayController {
     private final ObjectMapper mapper = new ObjectMapper();
     private final Path out;
     private final Path kill;
+    private final String token;
 
-    public RelayController(@Value("${relay.out}") String out, @Value("${relay.kill}") String kill) {
+    public RelayController(
+            @Value("${relay.out}") String out,
+            @Value("${relay.kill}") String kill,
+            @Value("${relay.token:}") String token) {
         this.out = Path.of(out);
         this.kill = Path.of(kill);
+        this.token = token == null ? "" : token.trim();
     }
 
     @GetMapping({"/", "/health"})
@@ -37,6 +43,7 @@ public class RelayController {
     @PostMapping("/")
     public ResponseEntity<Map<String, Object>> post(HttpServletRequest request) {
         if (Files.exists(kill)) return killed();
+        if (!writeAllowed(request)) return error(401, "unauthorized");
         long n;
         String header = request.getHeader("Content-Length");
         if (header == null || header.isBlank()) {
@@ -74,6 +81,15 @@ public class RelayController {
             }
             return error(500, String.valueOf(row.get("error")));
         }
+    }
+
+    private boolean writeAllowed(HttpServletRequest request) {
+        if (token.isBlank()) return true;
+        String header = request.getHeader("Authorization");
+        if (header == null) return false;
+        byte[] expected = ("Bearer " + token).getBytes(StandardCharsets.UTF_8);
+        byte[] actual = header.getBytes(StandardCharsets.UTF_8);
+        return MessageDigest.isEqual(expected, actual);
     }
 
     private void append(Map<String, Object> row) throws java.io.IOException {

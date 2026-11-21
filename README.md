@@ -1,6 +1,14 @@
 # automation-starter-kits
 
-Small, self-contained Python tools for common freelance automation jobs. Each folder runs on its own with a `requirements.txt`, a `SETUP.md`, and safe defaults: dry-run first, kill switches, no private keys.
+Small, self-contained automation tools — Python, an Anchor (Solana) program and a TypeScript wallet page — built with a focus on safe defaults: dry-run first, kill switches, read-only chain access, and no private keys in code.
+
+## Highlights (verified locally, 2026-11-12)
+
+- **Anchor 0.32.1 program on Solana devnet** — [`solana-watch-registry/`](solana-watch-registry) stores a watch list; `anchor test` → **4 passing** (init/add, second-signer rejection, duplicate-PDA rejection, pause/unpause). Deployed to devnet: [`Cy8SDx…557a3`](https://explorer.solana.com/address/Cy8SDxDGjFoxsiYvePXq67pdfiLgfJurcqUaTPD557a3?cluster=devnet).
+- **Read-only Python watcher** — `solana-wallet-alerts/alert.py --registry` reads that list with `getProgramAccounts` + memcmp; never opens a keypair. `unittest` → **8 passed**, `pytest tests/test_registry_watch.py` → **3 passed**.
+- **Vite + TypeScript Phantom wallet page** — [`solana-watch-registry/app/`](solana-watch-registry/app) simulates every instruction before the sign button enables. `tsc --noEmit` clean, `vitest` → 5 passed, Playwright → 1 passed, with the wallet provider and RPC mocked.
+
+## Kits
 
 | Folder | What it does | Stack |
 |---|---|---|

@@ -22,7 +22,7 @@ The image is described in `Dockerfile`. It is a multi-stage build: Maven package
 
 ```bash
 export JAVA_HOME=/opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home
-mvn -Dmaven.repo.local=/Volumes/NoxSSD/Codex/m2 test
+mvn -Dmaven.repo.local=/path/to/m2 test
 ```
 
 Tests run: 2, Failures: 0, Errors: 0, Skipped: 0. BUILD SUCCESS. Exit 0.

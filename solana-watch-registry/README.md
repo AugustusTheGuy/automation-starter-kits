@@ -15,7 +15,7 @@ npm install
 NO_DNA=1 anchor test
 ```
 
-`anchor test` starts a local validator and stops it when the run ends. Cargo output is the `target` symlink onto NoxSSD.
+`anchor test` starts a local validator and stops it when the run ends. Cargo output can live on an external drive via a `target` symlink.
 
 ## Deploy
 
@@ -33,8 +33,8 @@ Local tests passed on 2026-11-12. The devnet deploy also passed on 2026-11-12.
 
 ```bash
 SDKROOT="$(xcrun --sdk macosx --show-sdk-path)" \
-CARGO_HOME=/Volumes/NoxSSD/Codex/watch-registry-cargo \
-CARGO_TARGET_DIR=/Volumes/NoxSSD/Codex/watch-registry-target \
+CARGO_HOME=/path/to/cargo-home \
+CARGO_TARGET_DIR=/path/to/cargo-target \
 ANCHOR_WALLET="$PWD/deploy-wallet.json" \
 NO_DNA=1 anchor test
 ```
